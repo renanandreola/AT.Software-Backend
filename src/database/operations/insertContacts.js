@@ -2,13 +2,11 @@ const mongoose = require("mongoose");
 const { MongoClient } = require("mongodb");
 const ContactsSchema = require("../Schemas/Contacts");
 
-const uri = process.env.DBURI;
-
 const Contacts = mongoose.model("Contacts", ContactsSchema);
 
 async function insertContacts(newContact) {
   return new Promise(async (resolve, reject) => {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.DBURI);
 
     try {
       await client.connect();
